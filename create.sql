@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS [STATISTIK_MIGRASI];
+DROP TABLE IF EXISTS [MELAKUKAN_MIGRASI];
 DROP TABLE IF EXISTS [MIGRASI_ANTAR_DAERAH];
 DROP TABLE IF EXISTS [IMIGRASI];
 DROP TABLE IF EXISTS [MIGRASI];
@@ -11,7 +12,6 @@ DROP TABLE IF EXISTS [BERKEWARGANEGARAAN];
 DROP TABLE IF EXISTS [KESEHATAN];
 DROP TABLE IF EXISTS [MENEMPUH_PENDIDIKAN];
 DROP TABLE IF EXISTS [PENDIDIKAN];
-DROP TABLE IF EXISTS [DOKUMEN_IDENTITAS];
 DROP TABLE IF EXISTS [ASSET];
 DROP TABLE IF EXISTS [KEUANGAN];
 DROP TABLE IF EXISTS [KEMATIAN];
@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS [PERNIKAHAN];
 DROP TABLE IF EXISTS [PENDUDUK];
 DROP TABLE IF EXISTS [KELAHIRAN];
 DROP TABLE IF EXISTS [MEMILIKI_ALAMAT];
+ALTER TABLE KELUARGA DROP CONSTRAINT FK_keluarga_orang; -- Drop the constraint in KELUARGA table
 DROP TABLE IF EXISTS [ORANG];
 DROP TABLE IF EXISTS [KELUARGA];
 DROP TABLE IF EXISTS [PEKERJAAN];
@@ -60,19 +61,20 @@ CREATE TABLE [KELUARGA] (
     [Id_KK] INT PRIMARY KEY,
 
     -- fk
-    -- [Id_kepala_keluarga] UNIQUEIDENTIFIER NOT NULL,
+    [Id_kepala_keluarga] VARCHAR(22) NOT NULL,
     [Id_alamat] INT NOT NULL,
 
     -- CONSTRAINT [FK_keluarga_orang]
-    --     FOREIGN KEY ([Id_kepala_keluarga]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE,
+    --     FOREIGN KEY ([Id_kepala_keluarga]) REFERENCES [ORANG] ([Id_orang]),
     CONSTRAINT [FK_keluarga_alamat]
         FOREIGN KEY ([Id_alamat]) REFERENCES [ALAMAT] ([Id_alamat]) ON DELETE CASCADE
 );
 
 CREATE TABLE [ORANG] (
-    [Id_orang] VARCHAR(22) PRIMARY KEY DEFAULT NEWID(),
+    [Id_orang] VARCHAR(22) PRIMARY KEY,
     [Nama_depan] VARCHAR(32) NOT NULL,
-    [Nama_belakang] VARCHAR(32) NOT NULL,
+    [Nama_tengah] VARCHAR(32),
+    [Nama_belakang] VARCHAR(32),
     [Jenis_kelamin] VARCHAR(1) NOT NULL,
     [Status_pernikahan] VARCHAR(1) NOT NULL,
     [Hari_lahir] INT NOT NULL, 
@@ -94,7 +96,6 @@ CREATE TABLE [ORANG] (
         FOREIGN KEY ([Id_kota]) REFERENCES [KOTA] ([Id_kota]) ON DELETE CASCADE
 );
 
-
 -- M:n orang-alamat
 CREATE TABLE [MEMILIKI_ALAMAT] (
     [Id_orang] VARCHAR(22),
@@ -103,28 +104,42 @@ CREATE TABLE [MEMILIKI_ALAMAT] (
     PRIMARY KEY ([Id_orang],Id_alamat),
 
     CONSTRAINT [FKM_memilikiAlamat_orang]
-        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]),
+        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE,
 
     CONSTRAINT [FKM_memilikiAlamat_alamat]
         FOREIGN KEY([Id_alamat]) REFERENCES [ALAMAT] ([Id_alamat])
 
-)
+);
+
+-- subclass of orang
+CREATE TABLE [PENDUDUK] (
+    [Id_orang] VARCHAR(22) PRIMARY KEY,
+    [Agama] VARCHAR(10),
+    [Suku] VARCHAR(32) 
+    -- [Id_akta] INT, -- might need to reconsider
+
+    -- subclass
+    CONSTRAINT [SUB_Penduduk_Orang] 
+        FOREIGN KEY([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE,
+    -- fk
+    -- CONSTRAINT [FK_penduduk_kelahiran] 
+    --     FOREIGN KEY ([Id_akta]) REFERENCES [KELAHIRAN] ([Id_akta])
+);
+
 
 CREATE TABLE [KELAHIRAN] (
     [Id_akta] INT PRIMARY KEY, 
     [Tanggal] DATE NOT NULL,
     [Id_tempat] INT NOT NULL, 
     -- [Id_KK] UNIQUEIDENTIFIER NOT NULL, -- might need update later
-    -- [Id_orang] UNIQUEIDENTIFIER NOT NULL,
+    [Id_orang] VARCHAR(22) NOT NULL,
 
     -- fk
     CONSTRAINT [FK_kelahiran_alamat] 
-        FOREIGN KEY ([Id_tempat]) REFERENCES [ALAMAT] ([Id_alamat]) ON DELETE CASCADE,
-    -- CONSTRAINT [FK_kelahiran_orang]
-    --     FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE
+        FOREIGN KEY ([Id_tempat]) REFERENCES [ALAMAT] ([Id_alamat]),
+    CONSTRAINT [FK_kelahiran_orang]
+        FOREIGN KEY ([Id_orang]) REFERENCES [PENDUDUK] ([Id_orang]) ON DELETE CASCADE
 
-    -- CONSTRAINT [FK_kelahiran_keluarga] -- might need update later
-    --     FOREIGN KEY ([Id_KK]) REFERENCES [KELUARGA] ([Id_KK]) ON DELETE CASCADE
 );
 
 CREATE TABLE [KEMATIAN] (
@@ -137,19 +152,6 @@ CREATE TABLE [KEMATIAN] (
         FOREIGN KEY ([Id_tempat]) REFERENCES [ALAMAT] ([Id_alamat]) ON DELETE CASCADE
 );
 
--- subclass of orang
-CREATE TABLE [PENDUDUK] (
-    [Id_orang] VARCHAR(22) PRIMARY KEY DEFAULT NEWID(),
-    [Tempat_lahir] VARCHAR(64), --update later 
-    [Id_akta] INT, -- might need to reconsider
-
-    -- subclass
-    CONSTRAINT [SUB_Penduduk_Orang] 
-        FOREIGN KEY([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE,
-    -- fk
-    CONSTRAINT [FK_penduduk_kelahiran] 
-        FOREIGN KEY ([Id_akta]) REFERENCES [KELAHIRAN] ([Id_akta])
-);
 
 CREATE TABLE [IMIGRAN] (
     [Id_orang] VARCHAR(22) PRIMARY KEY, 
@@ -311,7 +313,7 @@ CREATE TABLE [MIGRASI_ANTAR_DAERAH] (
     [Id_migrasi] INT PRIMARY KEY,
     [Alasan_migrasi] VARCHAR(64),
     -- sub
-     CONSTRAINT [SUB_migrasiDaerah_migrasi]
+    CONSTRAINT [SUB_migrasiDaerah_migrasi]
         FOREIGN KEY ([Id_migrasi]) REFERENCES [MIGRASI] ([Id_migrasi]) ON DELETE CASCADE,
 
     -- fk
@@ -323,6 +325,19 @@ CREATE TABLE [MIGRASI_ANTAR_DAERAH] (
     CONSTRAINT [FK_migrasiDaerah_kotatujuan] 
         FOREIGN KEY ([Id_kota_tujuan]) REFERENCES [KOTA] ([Id_kota])
 );
+-- M:N migrasi-orang
+CREATE TABLE [MELAKUKAN_MIGRASI] (
+    [Id_orang] VARCHAR(22),
+    [Id_migrasi] INT,
+
+    PRIMARY KEY([Id_orang], [Id_migrasi]),
+
+    CONSTRAINT [Multi_melakukanMigrasi_orang]
+        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]),
+    CONSTRAINT [Multi_melakukanMigrasi_migrasi]
+        FOREIGN KEY ([Id_migrasi]) REFERENCES [MIGRASI] ([Id_migrasi]) ON DELETE CASCADE,
+
+)
 
 CREATE TABLE [STATISTIK_MIGRASI] (
     [Id_statistik] INT PRIMARY KEY,
@@ -336,3 +351,8 @@ CREATE TABLE [STATISTIK_MIGRASI] (
     CONSTRAINT [FK_statistikMigrasi_kota] 
         FOREIGN KEY ([Id_kota]) REFERENCES [KOTA] ([Id_kota])
 );
+
+-- alter table menambah fk keluarga
+ALTER TABLE [KELUARGA]
+ADD CONSTRAINT [FK_keluarga_orang]
+    FOREIGN KEY ([Id_kepala_keluarga]) REFERENCES [ORANG] ([Id_orang]);
