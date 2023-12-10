@@ -46,7 +46,6 @@ CREATE TABLE [NEGARA] (
 );
 
 -- berkaitan dengan identitas
-
 CREATE TABLE [ALAMAT] (
     [Id_alamat] INT PRIMARY KEY,
     [Provinsi] VARCHAR(32) NOT NULL,
@@ -75,12 +74,13 @@ CREATE TABLE [ORANG] (
     [Nama_depan] VARCHAR(32) NOT NULL,
     [Nama_tengah] VARCHAR(32),
     [Nama_belakang] VARCHAR(32),
+    -- [Hari_lahir] INT NOT NULL, 
+    -- [Bulan_lahir] INT NOT NULL,
+    -- [Tahun_lahir] INT NOT NULL,
+    [Tanggal_lahir] DATE,
     [Jenis_kelamin] VARCHAR(1) NOT NULL,
-    [Status_pernikahan] VARCHAR(1) NOT NULL,
-    [Hari_lahir] INT NOT NULL, 
-    [Bulan_lahir] INT NOT NULL,
-    [Tahun_lahir] INT NOT NULL,
     [Golongan_darah] VARCHAR(3),
+    [Status_menikah] VARCHAR(1) NOT NULL,
 
     -- fk
     [Id_pekerjaan] INT,
@@ -146,16 +146,21 @@ CREATE TABLE [KEMATIAN] (
     [Id_akta] INT PRIMARY KEY, 
     [Tanggal] DATE,
     [Id_tempat] INT, -- need update later
+    [Id_orang] VARCHAR(22),
 
     -- fk
     CONSTRAINT [FK_kematian_alamat] 
-        FOREIGN KEY ([Id_tempat]) REFERENCES [ALAMAT] ([Id_alamat]) ON DELETE CASCADE
+        FOREIGN KEY ([Id_tempat]) REFERENCES [ALAMAT] ([Id_alamat]) ON DELETE CASCADE,
+    CONSTRAINT [FK_kematian_orang]
+        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE
+
 );
 
 
 CREATE TABLE [IMIGRAN] (
     [Id_orang] VARCHAR(22) PRIMARY KEY, 
     [Lama_tinggal] INT,
+    [Status] VARCHAR(32),
 
     CONSTRAINT [SUB_Imigran_Orang] 
         FOREIGN KEY([Id_orang]) REFERENCES [ORANG]([Id_orang]) ON DELETE CASCADE
@@ -196,7 +201,13 @@ CREATE TABLE [KEUANGAN] (
     [Id_laporan] INT PRIMARY KEY,
     [Tahun] INT,
     [Pengeluaran] INT,
-    [Nilai_asset_total] INT
+    [Pendapatan] INT,
+    [Nilai_asset_total] INT,
+
+    -- FK
+    [Id_orang] VARCHAR(22),
+    CONSTRAINT [FK_keuangan_orang]
+        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang])
 );
 -- multivalue of keuangan
 CREATE TABLE [ASSET] (
@@ -210,15 +221,18 @@ CREATE TABLE [ASSET] (
 
 CREATE TABLE [PAJAK] (
     [Id_npwp_tahun] INT PRIMARY KEY,
-    [Jumlah_pajak_total] INT,
+    [Jumlah_pajak_total] INT, -- migth need name change
     [Tahun] INT,
     [Status] VARCHAR(1),
 
     [Id_laporan] INT,
-
+    [Id_orang] INT,
     -- fk
     CONSTRAINT [FK_pajak_keuangan] 
-        FOREIGN KEY ([Id_laporan]) REFERENCES [KEUANGAN] ([Id_laporan]) 
+        FOREIGN KEY ([Id_laporan]) REFERENCES [KEUANGAN] ([Id_laporan]),
+    CONSTRAINT [FK_pajak_orang] 
+        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]) 
+    
 );
 -- multivalue of pajak
 CREATE TABLE [JENIS_PAJAK] (
@@ -252,7 +266,7 @@ CREATE TABLE [MENEMPUH_PENDIDIKAN] (
 
 CREATE TABLE [KESEHATAN] (
     [Id_kesehatan] INT PRIMARY KEY,
-    [Nama_penyakit] VARCHAR(32),
+    [Penyakit] VARCHAR(32), -- might need name change
     [Tanggal] DATE,
 
     -- fk
@@ -276,6 +290,9 @@ CREATE TABLE [LAYANAN_SOSIAL] (
 CREATE TABLE [MEMILIKI_LAYANAN_SOSIAL] (
     [Id_orang] VARCHAR(22),
     [Id_layanan] INT,
+    [Mulai_berlaku] DATE,
+    [Tanggal_expired] DATE,
+
 
     PRIMARY KEY ([Id_orang],Id_layanan),
 
@@ -289,8 +306,8 @@ CREATE TABLE [MEMILIKI_LAYANAN_SOSIAL] (
 CREATE TABLE [MIGRASI] (
     [Id_migrasi] INT PRIMARY KEY,
     [Jenis_migrasi] VARCHAR(32),
-    [Tanggal] DATE,
     [Status] VARCHAR(32),
+    [Tanggal] DATE,
 );
 
 CREATE TABLE [IMIGRASI] (
