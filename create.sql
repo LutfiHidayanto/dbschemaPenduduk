@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS [ORANG];
 DROP TABLE IF EXISTS [KELUARGA];
 DROP TABLE IF EXISTS [PEKERJAAN];
 DROP TABLE IF EXISTS [ALAMAT];
+DROP TABLE IF EXISTS [PERUSAHAAN];
 DROP TABLE IF EXISTS [KEWARGANEGARAAN];
 DROP TABLE IF EXISTS [NEGARA];
 DROP TABLE IF EXISTS [KOTA];
@@ -57,7 +58,6 @@ CREATE TABLE [PERUSAHAAN] (
 CREATE TABLE [ALAMAT] (
     [Id_alamat] INT PRIMARY KEY,
     [Provinsi] VARCHAR(32) NOT NULL,
-    [Kabupaten] VARCHAR(64) NOT NULL,
     [Kecamatan] VARCHAR(64) NOT NULL,
     [RT] INT,
     [RW] INT,
@@ -65,9 +65,12 @@ CREATE TABLE [ALAMAT] (
     
     -- FK
     [Id_perusahaan] INT,
+    [Id_kota] INT,
 
     CONSTRAINT [FK_alamat_perusahaan] 
-        FOREIGN KEY ([Id_perusahaan]) REFERENCES [PERUSAHAAN] ([Id_perusahaan])
+        FOREIGN KEY ([Id_perusahaan]) REFERENCES [PERUSAHAAN] ([Id_perusahaan]),
+    CONSTRAINT [FK_alamat_kota] 
+        FOREIGN KEY ([Id_kota]) REFERENCES [KOTA] ([Id_kota])
 
 );
 
