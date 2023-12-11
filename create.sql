@@ -44,6 +44,14 @@ CREATE TABLE [NEGARA] (
     [Id_negara] INT PRIMARY KEY,
     [Nama_negara] VARCHAR(32) NOT NULL
 );
+-- new
+CREATE TABLE [PERUSAHAAN] (
+    [Id_perusahaan] INT PRIMARY KEY,
+    [Nama_perusahaan] VARCHAR(22),
+    [Jenis] VARCHAR(10),
+    [Sektor] VARCHAR(32),
+    [No_telp] INT,
+) 
 
 -- berkaitan dengan identitas
 CREATE TABLE [ALAMAT] (
@@ -53,7 +61,14 @@ CREATE TABLE [ALAMAT] (
     [Kecamatan] VARCHAR(64) NOT NULL,
     [RT] INT,
     [RW] INT,
-    [Kode_pos] INT NOT NULL
+    [Kode_pos] INT NOT NULL,
+    
+    -- FK
+    [Id_perusahaan] INT,
+
+    CONSTRAINT [FK_alamat_perusahaan] 
+        FOREIGN KEY ([Id_perusahaan]) REFERENCES [PERUSAHAAN] ([Id_perusahaan])
+
 );
 
 CREATE TABLE [KELUARGA] (
@@ -100,6 +115,7 @@ CREATE TABLE [ORANG] (
 CREATE TABLE [MEMILIKI_ALAMAT] (
     [Id_orang] VARCHAR(22),
     [Id_alamat] INT,
+    
 
     PRIMARY KEY ([Id_orang],Id_alamat),
 
