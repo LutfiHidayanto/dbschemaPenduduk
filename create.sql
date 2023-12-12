@@ -49,10 +49,10 @@ CREATE TABLE [NEGARA] (
 -- new
 CREATE TABLE [PERUSAHAAN] (
     [Id_perusahaan] INT PRIMARY KEY,
-    [Nama_perusahaan] VARCHAR(64),
-    [Jenis] VARCHAR(10),
-    [Sektor] VARCHAR(32),
-    [No_telp] VARCHAR(16),
+    [Nama_perusahaan] VARCHAR(64) NOT NULL,
+    [Jenis] VARCHAR(10) NOT NULL,
+    [Sektor] VARCHAR(32) NOT NULL,
+    [No_telp] VARCHAR(16) NOT NULL,
 );
 
 -- Multi valued Alamat perusahaan
@@ -73,14 +73,14 @@ CREATE TABLE [ALAMAT_PERUSAHAAN] (
 -- berkaitan dengan identitas
 CREATE TABLE [ALAMAT] (
     [Id_alamat] INT PRIMARY KEY,
-    [Provinsi] VARCHAR(32) NOT NULL,
-    [Kecamatan] VARCHAR(64) NOT NULL,
     [RT] INT,
     [RW] INT,
+    [Id_kota] INT NOT NULL,
+    [Kecamatan] VARCHAR(64) NOT NULL,
+    [Provinsi] VARCHAR(32) NOT NULL,
     [Kode_pos] INT NOT NULL,
     
     -- FK
-    [Id_kota] INT,
 
     CONSTRAINT [FK_alamat_kota] 
         FOREIGN KEY ([Id_kota]) REFERENCES [KOTA] ([Id_kota])
@@ -176,9 +176,9 @@ CREATE TABLE [KELAHIRAN] (
 
 CREATE TABLE [KEMATIAN] (
     [Id_akta] INT PRIMARY KEY, 
-    [Tanggal] DATE,
-    [Id_tempat] INT, -- need update later
-    [Id_orang] VARCHAR(22),
+    [Tanggal] DATE NOT NULL,
+    [Id_tempat] INT NOT NULL, -- need update later
+    [Id_orang] VARCHAR(22) NOT NULL,
 
     -- fk
     CONSTRAINT [FK_kematian_alamat] 
@@ -239,7 +239,7 @@ CREATE TABLE [KEUANGAN] (
     -- FK
     [Id_orang] VARCHAR(22),
     CONSTRAINT [FK_keuangan_orang]
-        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang])
+        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE
 );
 -- multivalue of keuangan
 CREATE TABLE [ASSET] (
@@ -248,7 +248,7 @@ CREATE TABLE [ASSET] (
     [Nilai] INT NOT NULL,
 
     CONSTRAINT [Multi_asset_keuangan]
-        FOREIGN KEY ([Id_laporan]) REFERENCES [KEUANGAN] ([Id_laporan]), 
+        FOREIGN KEY ([Id_laporan]) REFERENCES [KEUANGAN] ([Id_laporan]) ON DELETE CASCADE, 
 )
 
 CREATE TABLE [PAJAK] (
@@ -263,7 +263,7 @@ CREATE TABLE [PAJAK] (
     CONSTRAINT [FK_pajak_keuangan] 
         FOREIGN KEY ([Id_laporan]) REFERENCES [KEUANGAN] ([Id_laporan]),
     CONSTRAINT [FK_pajak_orang] 
-        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]) 
+        FOREIGN KEY ([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE
     
 );
 -- multivalue of pajak
