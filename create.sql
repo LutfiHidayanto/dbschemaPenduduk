@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS [PERNIKAHAN];
 DROP TABLE IF EXISTS [KELAHIRAN];
 DROP TABLE IF EXISTS [PENDUDUK];
 DROP TABLE IF EXISTS [MEMILIKI_ALAMAT];
--- ALTER TABLE KELUARGA DROP CONSTRAINT FK_keluarga_orang; -- Drop the constraint in KELUARGA table
+ALTER TABLE KELUARGA DROP CONSTRAINT FK_keluarga_orang; -- Drop the constraint in KELUARGA table
 DROP TABLE IF EXISTS [ORANG];
 DROP TABLE IF EXISTS [KELUARGA];
 DROP TABLE IF EXISTS [PEKERJAAN];
@@ -88,10 +88,10 @@ CREATE TABLE [ALAMAT] (
 );
 
 CREATE TABLE [KELUARGA] (
-    [Id_KK] VARCHAR(16) PRIMARY KEY,
+    [Id_KK] VARCHAR(20) PRIMARY KEY,
 
     -- fk
-    [Id_kepala_keluarga] VARCHAR(22) NOT NULL,
+    [Id_kepala_keluarga] VARCHAR(22),
     [Id_alamat] INT NOT NULL,
 
     -- CONSTRAINT [FK_keluarga_orang]
@@ -115,7 +115,7 @@ CREATE TABLE [ORANG] (
 
     -- fk
     [Id_pekerjaan] INT,
-    [Id_KK] VARCHAR(16),
+    [Id_KK] VARCHAR(20),
     [Id_kota] INT,
 
     -- fk
@@ -252,7 +252,7 @@ CREATE TABLE [ASSET] (
 )
 
 CREATE TABLE [PAJAK] (
-    [Id_npwp_tahun] INT PRIMARY KEY,
+    [Id_npwp_tahun] VARCHAR(22) PRIMARY KEY,
     [Jumlah_pajak_total] INT, -- migth need name change
     [Tahun] INT,
     [Status] VARCHAR(1),
@@ -268,7 +268,7 @@ CREATE TABLE [PAJAK] (
 );
 -- multivalue of pajak
 CREATE TABLE [JENIS_PAJAK] (
-    [Id_npwp_tahun] INT,
+    [Id_npwp_tahun] VARCHAR(22),
     [Jenis] VARCHAR(32),
     [Nilai] INT,
 
