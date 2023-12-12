@@ -313,7 +313,7 @@ CREATE TABLE [KESEHATAN] (
 
 
 CREATE TABLE [LAYANAN_SOSIAL] (
-    [Id_layanan] INT PRIMARY KEY, 
+    [Id_layanan] VARCHAR(10) PRIMARY KEY, 
     [Jenis] VARCHAR(64),
     [Nama_layanan] VARCHAR(64)
 );
@@ -321,7 +321,7 @@ CREATE TABLE [LAYANAN_SOSIAL] (
 -- M:M layanan sosial-orang
 CREATE TABLE [MEMILIKI_LAYANAN_SOSIAL] (
     [Id_orang] VARCHAR(22) NOT NULL,
-    [Id_layanan] INT,
+    [Id_layanan] VARCHAR(10),
     [Mulai_berlaku] DATE,
     [Tanggal_expired] DATE,
 
