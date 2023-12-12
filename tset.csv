@@ -1,31 +1,238 @@
-Id_perusahaan,Nama_perusahaan,Jenis,Sektor,No_telp
-1,Inovasi Cerdas Teknologi,BUMS,Teknologi,02112345678
-2,Maju Mitra Energi,BUMS,Energi,02287654321
-3,Berkah Kreatif Solusi,BUMS,Konsultan Bisnis,03123456789
-4,Gemilang Maju Group,BUMS,Properti,036178901234
-5,Harmoni Bisnis Integrasi,BUMS,Integrasi Bisnis,041156789012
-6,Sukses Maju Raya,BUMS,Perdagangan Umum,05143210987
-7,Prima Karya Dynamics,BUMS,Layanan Teknologi Informasi,06189012345
-8,Intelek Dinamika Solusi,BUMS,Konsultan IT,0711234567
-9,Megah Mitra Sentosa,BUMS,Konstruksi,08198765432
-10,Cipta Jaya Energi,BUMS,Energi Terbarukan,081234567890
-11,Sentra Cipta Inovasi,BUMS,Penelitian dan Pengembangan,081367890123
-12,Utama Kreatif Sinergi,BUMS,Periklanan dan Pemasaran,081490123456
-13,Eksklusif Maju Jaya,BUMS,Mode dan Desain,081523456789
-14,Global Maju Perkasa,BUMS,Ekspor dan Impor,081678901234
-15,Visioner Karya Nusantara,BUMS,Pengembangan Properti,081756789012
-16,Inspirasi Kreatif Sempurna,BUMS,Seni dan Hiburan,081890123456
-17,Solusi Maju Terpadu,BUMS,Teknologi Informasi,081923456789
-18,Gemerlap Maju Bersama,BUMS,Hiburan dan Rekreasi,082167890123
-19,Dinamis Cipta Solusi,BUMS,Teknologi Informasi,082290123456
-20,Harmonis Mitra Energi,BUMS,Energi dan Lingkungan,082323456789
-21,Elegan Karya Nusantara,BUMS,Desain Interior,082323456789
-22,Sentosa Maju Dynamics,BUMS,Layanan Teknologi,082456789012
-23,Kreatif Maju Bersama,BUMS,Desain Kreatif,082590123456
-24,Visioner Dinamika Solusi,BUMS,Konsultan Bisnis,082623456789
-25,Berkah Mitra Nusantara,BUMS,Perdagangan Internasional,082756789012
-26,Inovatif Maju Raya,BUMS,Teknologi Inovatif,082890123456
-27,Prima Cipta Inovasi,BUMS,Inovasi dan Penelitian,082923456789
-28,Global Karya Terpadu,BUMS,Perdagangan Global,083056789012
-29,Inspirasi Maju Jaya,BUMS,Desain Kreatif,083190123456
-30,Sukses Kreatif Sempurna,BUMS,Desain dan Pemasaran,083223456789
+12 P Saham      | 532
+12 P Apartemen  | 789
+13 P Rumah      | 276
+13 P Saham      | 945
+14 P Tanah      | 621
+14 P Apartemen  | 348
+15 P Kendaraan  | 803
+15 P Saham      | 478
+16 P Apartemen  | 592
+16 P Rumah      | 689
+17 P Kendaraan  | 374
+17 P Saham      | 915
+18 P Tanah      | 736
+18 P Saham      | 852
+19 P Apartemen  | 421
+19 P Tanah      | 576
+20 P Saham      | 309
+20 P Rumah      | 674
+21 P Kendaraan  | 847
+21 P Rumah      | 529
+22 P Apartemen  | 762
+22 P Saham      | 688
+23 P Kendaraan  | 295
+23 P Rumah      | 913
+24 P Tanah      | 478
+24 P Apartemen  | 624
+25 P Saham      | 387
+25 P Rumah      | 749
+26 P Apartemen  | 543
+26 P Kendaraan  | 816
+27 P Tanah      | 628
+27 P Saham      | 452
+28 P Apartemen  | 734
+28 P Saham      | 579
+29 P Saham      | 391
+29 P Kendaraan  | 657
+30 P Rumah      | 521
+30 P Apartemen  | 872
+31 P Saham      | 679
+31 P Rumah      | 745
+32 P Apartemen  | 498
+32 P Tanah      | 826
+33 P Kendaraan  | 418
+33 P Saham      | 539
+34 P Tanah      | 691
+34 P Apartemen  | 345
+35 P Saham      | 621
+35 P Rumah      | 892
+36 P Apartemen  | 768
+36 P Kendaraan  | 598
+37 P Tanah      | 412
+37 P Saham      | 728
+38 P Apartemen  | 537
+38 P Saham      | 491
+39 P Saham      | 374
+39 P Kendaraan  | 629
+40 P Rumah      | 487
+40 P Apartemen  | 713
+41 P Saham      | 845
+41 P Rumah      | 578
+42 P Apartemen  | 673
+42 P Tanah      | 412
+43 P Kendaraan  | 732
+43 P Rumah      | 396
+44 P Tanah      | 587
+44 P Apartemen  | 428
+45 P Saham      | 692
+45 P Rumah      | 519
+46 P Apartemen  | 365
+46 P Kendaraan  | 812
+47 P Tanah      | 739
+47 P Saham      | 627
+48 P Apartemen  | 521
+48 P Saham      | 498
+49 P Saham      | 318
+49 P Kendaraan  | 674
+50 P Rumah      | 592
+50 P Apartemen  | 447
+51 P Saham      | 745
+51 P Rumah      | 526
+52 P Apartemen  | 682
+52 P Tanah      | 413
+53 P Kendaraan  | 721
+53 P Rumah      | 386
+54 P Tanah      | 597
+54 P Apartemen  | 435
+55 P Saham      | 703
+55 P Rumah      | 509
+56 P Apartemen  | 379
+56 P Kendaraan  | 845
+57 P Tanah      | 724
+57 P Saham      | 635
+58 P Apartemen  | 568
+58 P Saham      | 512
+59 P Saham      | 402
+59 P Kendaraan  | 658
+60 P Rumah      | 532
+60 P Apartemen  | 789
+61 P Saham      | 276
+61 P Rumah      | 945
+62 P Tanah      | 621
+62 P Apartemen  | 348
+63 P Kendaraan  | 803
+63 P Saham      | 478
+64 P Apartemen  | 592
+64 P Rumah      | 689
+65 P Kendaraan  | 374
+65 P Saham      | 915
+66 P Tanah      | 736
+66 P Saham      | 852
+67 P Apartemen  | 421
+67 P Tanah      | 576
+68 P Saham      | 309
+68 P Rumah      | 674
+69 P Kendaraan  | 847
+69 P Rumah      | 529
+70 P Apartemen  | 762
+70 P Saham      | 688
+71 P Kendaraan  | 295
+71 P Rumah      | 913
+72 P Tanah      | 478
+72 P Apartemen  | 624
+73 P Saham      | 387
+73 P Rumah      | 749
+74 P Apartemen  | 543
+74 P Kendaraan  | 816
+75 P Tanah      | 628
+75 P Saham      | 452
+76 P Apartemen  | 734
+76 P Saham      | 579
+77 P Saham      | 391
+77 P Kendaraan  | 657
+78 P Rumah      | 521
+78 P Apartemen  | 872
+79 P Saham      | 679
+79 P Rumah      | 745
+80 P Apartemen  | 498
+80 P Tanah      | 826
+81 P Kendaraan  | 418
+81 P Saham      | 539
+82 P Tanah      | 691
+82 P Apartemen  | 345
+83 P Saham      | 621
+83 P Rumah      | 892
+84 P Apartemen  | 768
+84 P Kendaraan  | 598
+85 P Tanah      | 412
+85 P Saham      | 728
+86 P Apartemen  | 537
+86 P Saham      | 491
+87 P Saham      | 374
+87 P Kendaraan  | 629
+88 P Rumah      | 487
+88 P Apartemen  | 713
+89 P Saham      | 845
+89 P Rumah      | 578
+90 P Apartemen  | 673
+90 P Tanah      | 412
+91 P Kendaraan  | 732
+91 P Rumah      | 396
+92 P Tanah      | 587
+92 P Apartemen  | 428
+93 P Saham      | 692
+93 P Rumah      | 519
+94 P Apartemen  | 365
+94 P Kendaraan  | 812
+95 P Tanah      | 739
+95 P Saham      | 627
+96 P Apartemen  | 521
+96 P Saham      | 498
+97 P Saham      | 318
+97 P Kendaraan  | 674
+98 P Rumah      | 592
+98 P Apartemen  | 447
+99 P Saham      | 745
+99 P Rumah      | 526
+100P Apartemen  | 682
+100P Tanah      | 413
+101P Kendaraan  | 721
+101P Rumah      | 386
+102P Tanah      | 597
+102P Apartemen  | 435
+103P Saham      | 703
+103P Rumah      | 509
+104P Apartemen  | 379
+104P Kendaraan  | 845
+105P Tanah      | 724
+105P Saham      | 635
+106P Apartemen  | 568
+106P Saham      | 512
+107P Saham      | 402
+107P Kendaraan  | 658
+108P Rumah      | 532
+108P Apartemen  | 789
+109P Saham      | 276
+109P Rumah      | 945
+110P Tanah      | 621
+110P Apartemen  | 348
+111P Kendaraan  | 803
+111P Saham      | 478
+112P Apartemen  | 592
+112P Rumah      | 689
+113P Kendaraan  | 374
+113P Saham      | 915
+114P Tanah      | 736
+114P Saham      | 852
+115P Apartemen  | 421
+115P Tanah      | 576
+116P Saham      | 309
+116P Rumah      | 674
+117P Kendaraan  | 847
+117P Rumah      | 529
+118P Apartemen  | 762
+118P Saham      | 688
+119P Kendaraan  | 295
+119P Rumah      | 913
+120P Tanah      | 478
+120P Apartemen  | 624
+121P Saham      | 387
+121P Rumah      | 749
+122P Apartemen  | 543
+122P Kendaraan  | 816
+123P Tanah      | 628
+123P Saham      | 452
+124P Apartemen  | 734
+124P Saham      | 579
+125P Saham      | 391
+125P Kendaraan  | 657
+126P Rumah      | 521
+126P Apartemen  | 872
+127P Saham      | 679
+127P Rumah      | 745
+128P Apartemen  | 498
+128P Tanah      | 826
+129P Kendaraan  | 418
+129P Saham      | 539
+130P Tanah      | 691
+130P Apartemen  | 345

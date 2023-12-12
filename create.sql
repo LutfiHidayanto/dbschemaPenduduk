@@ -64,7 +64,7 @@ CREATE TABLE [ALAMAT_PERUSAHAAN] (
     [Kode_pos] VARCHAR(32),
     [Provinsi] VARCHAR(32),
 
-    CONSTRAINT [Mulai_alamat_perusahaan] 
+    CONSTRAINT [Multi_alamat_perusahaan] 
         FOREIGN KEY ([Id_perusahaan]) REFERENCES [PERUSAHAAN] ([Id_perusahaan])
 )
 
@@ -277,7 +277,7 @@ CREATE TABLE [JENIS_PAJAK] (
 )
 
 CREATE TABLE [PENDIDIKAN] (
-    [Id_instansi] INT PRIMARY KEY,
+    [Id_instansi] VARCHAR(10) PRIMARY KEY,
     [Jenjang] VARCHAR(32), -- update later
     [Nama_Instansi] VARCHAR(64)
 );
@@ -285,7 +285,7 @@ CREATE TABLE [PENDIDIKAN] (
 -- M:N orang-pendidikan
 CREATE TABLE [MENEMPUH_PENDIDIKAN] (
     [Id_orang] VARCHAR(22),
-    [Id_instansi] INT,
+    [Id_instansi] VARCHAR(10),
 
     PRIMARY KEY ([Id_orang],Id_instansi),
 
