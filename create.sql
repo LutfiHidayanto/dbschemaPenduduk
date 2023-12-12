@@ -64,6 +64,8 @@ CREATE TABLE [ALAMAT_PERUSAHAAN] (
     [Kode_pos] VARCHAR(32),
     [Provinsi] VARCHAR(32),
 
+    PRIMARY KEY([Id_perusahaan], [No_Jalan]),
+
     CONSTRAINT [Multi_alamat_perusahaan] 
         FOREIGN KEY ([Id_perusahaan]) REFERENCES [PERUSAHAAN] ([Id_perusahaan])
 )
@@ -272,6 +274,7 @@ CREATE TABLE [JENIS_PAJAK] (
     [Jenis] VARCHAR(32),
     [Nilai] INT,
 
+    PRIMARY KEY([Id_npwp_tahun], [Jenis]),
     CONSTRAINT [Multi_jenispajak_pajak] 
         FOREIGN KEY ([Id_npwp_tahun]) REFERENCES [PAJAK] ([Id_npwp_tahun]) ON DELETE CASCADE
 )
