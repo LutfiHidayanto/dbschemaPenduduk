@@ -52,7 +52,22 @@ CREATE TABLE [PERUSAHAAN] (
     [Jenis] VARCHAR(10),
     [Sektor] VARCHAR(32),
     [No_telp] INT,
-) 
+);
+
+-- Multi valued Alamat perusahaan
+CREATE TABLE [ALAMAT_PERUSAHAAN] (
+    [Id_perusahaan] INT, 
+    [No_jalan] VARCHAR(32),
+    [Kecamatan] VARCHAR(32),
+    [Kota] VARCHAR(32),
+    [Kode_pos] VARCHAR(32),
+    [Provinsi] VARCHAR(32),
+
+    CONSTRAINT [Mulai_alamat_perusahaan] 
+        FOREIGN KEY ([Id_perusahaan]) REFERENCES [PERUSAHAAN] ([Id_perusahaan])
+)
+
+
 
 -- berkaitan dengan identitas
 CREATE TABLE [ALAMAT] (
@@ -64,11 +79,8 @@ CREATE TABLE [ALAMAT] (
     [Kode_pos] INT NOT NULL,
     
     -- FK
-    [Id_perusahaan] INT,
     [Id_kota] INT,
 
-    CONSTRAINT [FK_alamat_perusahaan] 
-        FOREIGN KEY ([Id_perusahaan]) REFERENCES [PERUSAHAAN] ([Id_perusahaan]),
     CONSTRAINT [FK_alamat_kota] 
         FOREIGN KEY ([Id_kota]) REFERENCES [KOTA] ([Id_kota])
 
