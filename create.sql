@@ -58,7 +58,7 @@ CREATE TABLE [PERUSAHAAN] (
 -- Multi valued Alamat perusahaan
 CREATE TABLE [ALAMAT_PERUSAHAAN] (
     [Id_perusahaan] INT, 
-    [No_jalan] VARCHAR(32),
+    [No_jalan] VARCHAR(64),
     [Kecamatan] VARCHAR(32),
     [Kota] VARCHAR(32),
     [Kode_pos] VARCHAR(32),
@@ -255,7 +255,7 @@ CREATE TABLE [PAJAK] (
     [Id_npwp_tahun] VARCHAR(22) PRIMARY KEY,
     [Jumlah_pajak_total] INT, -- migth need name change
     [Tahun] INT,
-    [Status] VARCHAR(1),
+    [Status] VARCHAR(5),
 
     [Id_laporan] INT,
     [Id_orang] VARCHAR(22),
@@ -344,7 +344,7 @@ CREATE TABLE [MIGRASI] (
 
 CREATE TABLE [IMIGRASI] (
     [Id_migrasi] INT PRIMARY KEY,
-    [Alasan_imigrasi] VARCHAR(64),
+    [Alasan_imigrasi] VARCHAR(128),
     
     -- fk and sub
     [Id_kota] INT,
