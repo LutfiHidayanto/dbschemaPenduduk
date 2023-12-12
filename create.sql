@@ -320,7 +320,7 @@ CREATE TABLE [LAYANAN_SOSIAL] (
 
 -- M:M layanan sosial-orang
 CREATE TABLE [MEMILIKI_LAYANAN_SOSIAL] (
-    [Id_orang] VARCHAR(22),
+    [Id_orang] VARCHAR(22) NOT NULL,
     [Id_layanan] INT,
     [Mulai_berlaku] DATE,
     [Tanggal_expired] DATE,
