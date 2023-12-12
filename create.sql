@@ -88,7 +88,7 @@ CREATE TABLE [ALAMAT] (
 );
 
 CREATE TABLE [KELUARGA] (
-    [Id_KK] INT PRIMARY KEY,
+    [Id_KK] VARCHAR(16) PRIMARY KEY,
 
     -- fk
     [Id_kepala_keluarga] VARCHAR(22) NOT NULL,
@@ -111,11 +111,11 @@ CREATE TABLE [ORANG] (
     [Tanggal_lahir] DATE,
     [Jenis_kelamin] VARCHAR(1) NOT NULL,
     [Golongan_darah] VARCHAR(3),
-    [Status_menikah] VARCHAR(1) NOT NULL,
+    [Status_menikah] VARCHAR(7) NOT NULL,
 
     -- fk
     [Id_pekerjaan] INT,
-    [Id_KK] INT,
+    [Id_KK] VARCHAR(16),
     [Id_kota] INT,
 
     -- fk

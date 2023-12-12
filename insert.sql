@@ -457,10 +457,10 @@ INSERT INTO ALAMAT (Id_alamat, Rt, Rw, Id_kota, Kecamatan, Provinsi, Kode_pos) V
 
 
 -- ORANG
-INSERT INTO nama_tabel (
+INSERT INTO ORANG (
     Id_orang, Nama_depan, Nama_tengah, Nama_belakang,
     Tanggal_lahir, Jenis_kelamin, Status_menikah, Golongan_darah,
-    FK_Id_Pekerjaan, FK_Id_KK, FK_Id_kota
+    Id_pekerjaan, Id_KK, Id_kota
 )
 VALUES 
     ('KTP_3201020101950001', 'Aditya', 'Putra', 'Mahesa', '1995-06-10', 'L', 'Menikah', 'A-', 22, '1234567890123474', 68),
@@ -524,7 +524,7 @@ VALUES
     ('KTP_3259185959930059', 'Arif', 'Aditya', 'Nugroho', '1991-11-07', 'L', 'Menikah', 'A+', 21, '1234567890123466', 44),
     ('KTP_326020606093006', 'Wulan', 'Putri', 'Maharani', '1995-01-30', 'P', 'Belum', 'AB-', 23, '1234567890123510', 46),
     ('KTP_3261226161930061', 'Raga', 'Prabu', 'Wibowo', '1998-06-02', 'L', 'Menikah', 'O-', 3, '1234567890123465', 45),
-    ('KTP_3261226161930061', 'Ayu', 'Anggraini', 'Pertiwi', '1992-12-19', 'P', 'Belum', 'A+', 26, '1234567890123511', 63),
+    ('KTP_3261226161930062', 'Ayu', 'Anggraini', 'Pertiwi', '1992-12-19', 'P', 'Belum', 'A+', 26, '1234567890123511', 63),
     ('KTP_3263266363930063', 'Arman', 'Prasetya', 'Nugraha', '1999-03-13', 'L', 'Menikah', 'B+', 2, '1234567890123464', 62),
     ('KTP_3264286464930064', 'Sari', 'Puspita', 'Dewi', '1993-07-08', 'P', 'Menikah', 'AB+', 24, '1234567890123475', 61),
     ('KTP_3265306565930065', 'Dwi', 'Aditya', 'Pratama', '1996-10-24', 'L', 'Menikah', 'O-', 47, '1234567890123463', 60),
@@ -542,8 +542,60 @@ VALUES
     ('KTP_3277547777930077', 'Rama', 'Prabu', 'Wibowo', '1991-02-17', 'L', 'Menikah', 'O+', 16, '1234567890123457', 55),
     ('KTP_3278567878930078', 'Rini', 'Anggraini', 'Pertiwi', '1996-07-09', 'P', 'Belum', 'A+', 48, '1234567890123514', 39),
     ('KTP_3279587979930079', 'Bagas', 'Prasetya', 'Nugraha', '1993-12-25', 'L', 'Menikah', 'O-', 20, '1234567890123456', 41),
-    ('KTP_328060808093008', 'Yuni', 'Puspita', 'Sari', '1998-04-21', 'P', 'Belum', 'B-', 19, '1234567890123515', 42);
+    ('KTP_328060808093008', 'Yuni', 'Puspita', 'Sari', '1998-04-21', 'P', 'Belum', 'B-', 19, '1234567890123515', 42),
 -- imigran belum 
+    ('Pasp_AB123456', 'Alessandro', 'Mateo', 'Rossi', '1990-05-15', 'L', 'Belum', 'A+', 15, '1234567890123516', 69),
+    ('Pasp_CD789012', 'Isabella', 'Sofia', 'Hernandez', '1985-07-03', 'P', 'Belum', 'B-', 32, '1234567890123517', 69),
+    ('Pasp_EF345678', 'Amir', 'Malik', 'Khan', '1988-09-20', 'L', 'Belum', 'O+', 6, '1234567890123518', 68),
+    ('Pasp_GH901234', 'Luna', 'Valentina', 'Rodriguez', '1992-03-08', 'P', 'Belum', 'AB-', 20, '1234567890123519', 69),
+    ('Pasp_IJ567890', 'Leo', 'Rafael', 'Gonzalez', '1987-11-12', 'L', 'Belum', 'A+', 11, '1234567890123520', 90),
+    ('Pasp_KL123456', 'Aisha', 'Noor', 'Ahmed', '1991-04-05', 'P', 'Belum', 'B-', 7, '1234567890123521', 68),
+    ('Pasp_MN789012', 'Matteo', 'Giovanni', 'Costa', '1986-01-18', 'L', 'Belum', 'O+', 3, '1234567890123522', 68),
+    ('Pasp_OP345678', 'Sofia', 'Carmen', 'Castillo', '1989-10-22', 'P', 'Belum', 'AB-', 28, '1234567890123523', 69),
+    ('Pasp_QR901234', 'Malik', 'Amir', 'Khan', '1984-08-09', 'L', 'Belum', 'A+', 17, '1234567890123524', 90),
+    ('Pasp_ST567890', 'Esmeralda', 'Maria', 'Silva', '1993-06-30', 'P', 'Belum', 'B-', 46, '1234567890123525', 68),
+    ('Pasp_UV123456', 'Zayn', 'Jamal', 'Al-Farsi', '1983-12-14', 'L', 'Belum', 'O+', 42, '1234567890123526', 91),
+    ('Pasp_WX789012', 'Elena', 'Isabella', 'Marino', '1995-02-25', 'P', 'Menikah', 'AB-', 21, '1234567890123474', 68),
+    ('Pasp_YZ345678', 'Alejandro', 'Juan', 'Torres', '1982-07-07', 'L', 'Belum', 'A+', 14, '1234567890123527', 90),
+    ('Pasp_AA901234', 'Lila', 'Jasmine', 'Nguyen', '1994-03-19', 'P', 'Belum', 'B-', 36, '1234567890123528', 69),
+    ('Pasp_BB567890', 'Ahmed', 'Omar', 'El-Masri', '1981-11-02', 'L', 'Belum', 'O+', 5, '1234567890123529', 91),
+    ('Pasp_CC123456', 'Isabella', 'Lucia', 'Costa', '1996-09-11', 'P', 'Belum', 'AB-', 49, '1234567890123530', 73),
+    ('Pasp_DD789012', 'Kai', 'Hiroshi', 'Yamamoto', '1980-05-26', 'L', 'Belum', 'A+', 25, '1234567890123531', 92),
+    ('Pasp_EE345678', 'Aaliyah', 'Nia', 'Patel', '1997-08-10', 'P', 'Menikah', 'O+', 33, '1234567890123470', 69),
+    ('Pasp_FF901234', 'Luca', 'Marco', 'Ferrari', '1979-04-04', 'L', 'Belum', 'B-', 12, '1234567890123532', 93),
+    ('Pasp_GG567890', 'Aisha', 'Zainab', 'Al-Mansoori', '1998-01-17', 'P', 'Belum', 'A+', 38, '1234567890123533', 68),
+    ('Pasp_HH123456', 'Javier', 'Diego', 'Martinez', '1978-10-13', 'L', 'Belum', 'AB-', 22, '1234567890123534', 94),
+    ('Pasp_II789012', 'Leila', 'Amara', 'Khoury', '1999-02-28', 'P', 'Belum', 'O+', 48, '1234567890123535', 10),
+    ('Pasp_JJ345678', 'Andrei', 'Dimitrov', 'Ivanov', '1977-06-01', 'L', 'Belum', 'B-', 41, '1234567890123536', 94),
+    ('Pasp_KK901234', 'Valentina', 'Elena', 'Morales', '2000-07-23', 'P', 'Menikah', 'A+', 16, '1234567890123458', 73),
+    ('Pasp_LL567890', 'Amirah', 'Yasmin', 'Khan', '1976-03-06', 'P', 'Belum', 'O+', 26, '1234567890123537', 90),
+    ('Pasp_MM123456', 'Adrian', 'Stefanov', 'Petrov', '2001-09-16', 'L', 'Belum', 'B-', 29, '1234567890123538', 91),
+    ('Pasp_NN789012', 'Lila', 'Nadia', 'Abbas', '1975-11-29', 'P', 'Belum', 'AB-', 2, '1234567890123539', 73),
+    ('Pasp_OO345678', 'Gabriel', 'Mateo', 'Santos', '2002-05-09', 'L', 'Belum', 'O+', 10, '1234567890123540', 91),
+    ('Pasp_PP901234', 'Emilia', 'Sofia', 'Vasquez', '1974-08-21', 'P', 'Belum', 'B-', 31, '1234567890123541', 68),
+    ('Pasp_QQ567890', 'Amir', 'Karim', 'Al-Hashmi', '2003-01-08', 'L', 'Belum', 'A+', 30, '1234567890123542', 95),
+    ('Pasp_RR123456', 'Camila', 'Isabela', 'Cardoso', '1973-10-12', 'P', 'Belum', 'O+', 18, '1234567890123543', 73),
+    ('Pasp_SS789012', 'Zane', 'Alexander', 'Smith', '2004-04-02', 'L', 'Belum', 'AB-', 35, '1234567890123544', 90),
+    ('Pasp_TT345678', 'Lucia', 'Gabriela', 'Costa', '1972-07-15', 'P', 'Menikah', 'A+', 37, '1234567890123464', 68),
+    ('Pasp_UU901234', 'Naveen', 'Raj', 'Kapoor', '2000-11-26', 'L', 'Belum', 'AB-', 44, '1234567890123545', 96),
+    ('Pasp_VV567890', 'Aisha', 'Fatima', 'Al-Mansoori', '1971-02-05', 'P', 'Belum', 'O+', 34, '1234567890123546', 73),
+    ('Pasp_WW123456', 'Rafael', 'Carlos', 'Mendez', '1989-05-18', 'L', 'Belum', 'B-', 50, '1234567890123547', 90),
+    ('Pasp_XX789012', 'Zara', 'Amara', 'Patel', '1970-09-23', 'P', 'Belum', 'A+', 24, '1234567890123548', 66),
+    ('Pasp_YY345678', 'Lorenzo', 'Alessio', 'Romano', '1973-12-07', 'L', 'Belum', 'O+', 8, '1234567890123549', 91),
+    ('Pasp_ZZ901234', 'Maya', 'Aaliyah', 'Malik', '1970-01-22', 'P', 'Belum', 'AB-', 45, '1234567890123550', 23),
+    ('Pasp_123456AB', 'Omar', 'Farid', 'Al-Hakim', '1998-06-11', 'L', 'Belum', 'A+', 47, '1234567890123551', 91),
+    ('Pasp_789012CD', 'Leila', 'Amira', 'Khoury', '1969-03-04', 'P', 'Belum', 'B-', 23, '1234567890123552', 97),
+    ('Pasp_345678EF', 'Andres', 'Alejandro', 'Perez', '2009-08-20', 'L', 'Belum', 'O+', 19, '1234567890123553', 91),
+    ('Pasp_901234GH', 'Amara', 'Zainab', 'Khan', '1968-10-19', 'P', 'Menikah', 'A+', 4, '1234567890123478', 66),
+    ('Pasp_567890IJ', 'Gabriel', 'Santiago', 'Silva', '2002-01-08', 'L', 'Belum', 'B-', 39, '1234567890123554', 91),
+    ('Pasp_123456KL', 'Isabella', 'Sofia', 'Gonzalez', '1967-07-14', 'P', 'Belum', 'AB-', 27, '1234567890123555', 66),
+    ('Pasp_789012MN', 'Ahmed', 'Amir', 'Ali', '2001-05-03', 'L', 'Belum', 'O+', 13, '1234567890123556', 96),
+    ('Pasp_345678OP', 'Sofia', 'Maria', 'Costa', '1966-11-27', 'P', 'Belum', 'A+', 1, '1234567890123557', 29),
+    ('Pasp_901234QR', 'Leo', 'Sebastian', 'Lopez', '1999-02-09', 'L', 'Belum', 'AB-', 40, '1234567890123558', 91),
+    ('Pasp_567890ST', 'Yasmin', 'Aisha', 'Al-Mansoori', '1965-10-10', 'P', 'Belum', 'O+', 43, '1234567890123559', 66),
+    ('Pasp_123456UV', 'Rafael', 'Alejandro', 'Hernandez', '2000-04-21', 'L', 'Belum', 'B-', 9, '1234567890123560', 96);
+
+
 
 INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Islam', 'Jawa', 'KTP_3201020101950001'),
@@ -555,7 +607,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Protestan', 'Madura', 'KTP_3207140707930007'),
 ('Hindu', 'Aceh', 'KTP_3208160808930008'),
 ('Buddha', 'Banten', 'KTP_3209180909930009'),
-('Islam', 'Ambon', 'KTP_3210201010930010'),
+('Islam', 'Ambon', 'KTP_321020101093001'),
 ('Islam', 'Toraja', 'KTP_3211221111930011'),
 ('Katolik', 'Sasak', 'KTP_3212241212930012'),
 ('Hindu', 'Nias', 'KTP_3213261313930013'),
@@ -565,7 +617,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Katolik', 'Minahasa', 'KTP_3217341717930017'),
 ('Buddha', 'Melayu', 'KTP_3218361818930018'),
 ('Islam', 'Banten', 'KTP_3219381919930019'),
-('Hindu', 'Madura', 'KTP_3220402020930020'),
+('Hindu', 'Madura', 'KTP_322040202093002'),
 ('Islam', 'Gorontalo', 'KTP_3221422121930021'),
 ('Protestan', 'Sunda', 'KTP_3222442222930022'),
 ('Hindu', 'Jawa', 'KTP_3223462323930023'),
@@ -575,7 +627,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Buddha', 'Jawa', 'KTP_3227542727930027'),
 ('Islam', 'Kalimantan', 'KTP_3228562828930028'),
 ('Protestan', 'Papua', 'KTP_3229582929930029'),
-('Islam', 'Maluku', 'KTP_3230603030930030'),
+('Islam', 'Maluku', 'KTP_323060303093003'),
 ('Katolik', 'Sangir', 'KTP_3231623131930031'),
 ('Hindu', 'Sunda', 'KTP_3232643232930032'),
 ('Islam', 'Ternate', 'KTP_3233663333930033'),
@@ -585,7 +637,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Hindu', 'Jawa', 'KTP_3237743737930037'),
 ('Protestan', 'Rote', 'KTP_3238763838930038'),
 ('Islam', 'Manggarai', 'KTP_3239783939930039'),
-('Katolik', 'Sunda', 'KTP_3240804040930040'),
+('Katolik', 'Sunda', 'KTP_324080404093004'),
 ('Islam', 'Jawa', 'KTP_3241824141930041'),
 ('Katolik', 'Wamena', 'KTP_3242844242930042'),
 ('Hindu', 'Sunda', 'KTP_3243864343930043'),
@@ -595,7 +647,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Hindu', 'Jawa', 'KTP_3247944747930047'),
 ('Islam', 'Sunda', 'KTP_3248964848930048'),
 ('Protestan', 'Jawa', 'KTP_3249984949930049'),
-('Katolik', 'Banten', 'KTP_3250005050930050'),
+('Katolik', 'Banten', 'KTP_325000505093005'),
 ('Islam', 'Sunda', 'KTP_3251025151930051'),
 ('Hindu', 'Jawa', 'KTP_3252045252930052'),
 ('Katolik', 'Banten', 'KTP_3253065353930053'),
@@ -605,7 +657,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Protestan', 'Sunda', 'KTP_3257145757930057'),
 ('Hindu', 'Banten', 'KTP_3258165858930058'),
 ('Islam', 'Jawa', 'KTP_3259185959930059'),
-('Katolik', 'Betawi', 'KTP_3260206060930060'),
+('Katolik', 'Betawi', 'KTP_326020606093006'),
 ('Islam', 'Sunda', 'KTP_3261226161930061'),
 ('Hindu', 'Jawa', 'KTP_3262246262930062'),
 ('Islam', 'Jawa', 'KTP_3263266363930063'),
@@ -615,7 +667,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Buddha', 'Sunda', 'KTP_3267346767930067'),
 ('Katolik', 'Jawa', 'KTP_3268366868930068'),
 ('Islam', 'Jawa', 'KTP_3269386969930069'),
-('Hindu', 'Banten', 'KTP_3270407070930070'),
+('Hindu', 'Banten', 'KTP_327040707093007'),
 ('Protestan', 'Betawi', 'KTP_3271427171930071'),
 ('Islam', 'Jawa', 'KTP_3272447272930072'),
 ('Katolik', 'Sunda', 'KTP_3273467373930073'),
@@ -625,7 +677,7 @@ INSERT INTO PENDUDUK (Agama, Suku, Id_orang) VALUES
 ('Protestan', 'Jawa', 'KTP_3277547777930077'),
 ('Islam', 'Betawi', 'KTP_3278567878930078'),
 ('Katolik', 'Jawa', 'KTP_3279587979930079'),
-('Buddha', 'Madura', 'KTP_3280608080930080');
+('Buddha', 'Madura', 'KTP_328060808093008');
 
 
 INSERT INTO LAYANAN_SOSIAL (Id_layanan, Jenis, Nama_layanan)
@@ -729,3 +781,26 @@ VALUES
 (69, 'Imigrasi', '2015-09-08', 'Selesai'),
 (70, 'Imigrasi', '2021-09-22', 'Selesai');
 
+-- migrasi
+
+INSERT INTO MELAKUKAN_MIGRASI (Id_orang, Id_migrasi) VALUES
+('KTP_3261226161930061', 1),
+('KTP_3262246262930062', 2),
+('KTP_3263266363930063', 3),
+('KTP_3264286464930064', 4),
+('KTP_3265306565930065', 5),
+('KTP_3266326666930066', 6),
+('KTP_3267346767930067', 7),
+('KTP_3268366868930068', 8),
+('KTP_3269386969930069', 9),
+('KTP_327040707093007', 10),
+('KTP_3271427171930071', 11),
+('KTP_3272447272930072', 12),
+('KTP_3273467373930073', 13),
+('KTP_3274487474930074', 14),
+('KTP_3275507575930075', 15),
+('KTP_3276527676930076', 16),
+('KTP_3277547777930077', 17),
+('KTP_3278567878930078', 18),
+('KTP_3279587979930079', 19),
+('KTP_328060808093008', 20);
