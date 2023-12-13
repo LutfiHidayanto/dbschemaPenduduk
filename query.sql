@@ -46,4 +46,15 @@ JOIN "NEGARA" ON "IMIGRASI"."Id_negara" = "NEGARA"."Id_negara"
 
 -- pajak
 
-S
+SELECT
+	"Id_npwp_tahun", "Jumlah_pajak_total", "Tahun", "Status", 
+	"ORANG"."Nama_depan", "ORANG"."Nama_tengah", "ORANG"."Nama_belakang"
+FROM "PAJAK"
+JOIN "ORANG" ON "ORANG"."Id_orang" = "PAJAK"."Id_orang"
+
+-- penduduk
+
+select *, "PEKERJAAN"."Nama_pekerjaan", "KOTA"."Nama_kota" from "ORANG"
+JOIN "PENDUDUK" ON "ORANG"."Id_orang" = "PENDUDUK"."Id_orang"
+JOIN "PEKERJAAN" ON "ORANG"."Id_pekerjaan" = "PEKERJAAN"."Id_pekerjaan"
+JOIN "KOTA" ON "ORANG"."Id_kota_domisili" = "KOTA"."Id_kota"
