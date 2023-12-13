@@ -107,9 +107,6 @@ CREATE TABLE [ORANG] (
     [Nama_depan] VARCHAR(32) NOT NULL,
     [Nama_tengah] VARCHAR(32),
     [Nama_belakang] VARCHAR(32),
-    -- [Hari_lahir] INT NOT NULL, 
-    -- [Bulan_lahir] INT NOT NULL,
-    -- [Tahun_lahir] INT NOT NULL,
     [Tanggal_lahir] DATE,
     [Jenis_kelamin] VARCHAR(1) NOT NULL,
     [Golongan_darah] VARCHAR(3),
@@ -150,14 +147,10 @@ CREATE TABLE [PENDUDUK] (
     [Id_orang] VARCHAR(22) PRIMARY KEY,
     [Agama] VARCHAR(10),
     [Suku] VARCHAR(32) 
-    -- [Id_akta] INT, -- might need to reconsider
 
     -- subclass
     CONSTRAINT [SUB_Penduduk_Orang] 
         FOREIGN KEY([Id_orang]) REFERENCES [ORANG] ([Id_orang]) ON DELETE CASCADE,
-    -- fk
-    -- CONSTRAINT [FK_penduduk_kelahiran] 
-    --     FOREIGN KEY ([Id_akta]) REFERENCES [KELAHIRAN] ([Id_akta])
 );
 
 
@@ -165,7 +158,6 @@ CREATE TABLE [KELAHIRAN] (
     [Id_akta] INT PRIMARY KEY, 
     [Tanggal] DATE NOT NULL,
     [Id_tempat] INT NOT NULL, 
-    -- [Id_KK] UNIQUEIDENTIFIER NOT NULL, -- might need update later
     [Id_orang] VARCHAR(22) NOT NULL,
 
     -- fk
@@ -179,7 +171,7 @@ CREATE TABLE [KELAHIRAN] (
 CREATE TABLE [KEMATIAN] (
     [Id_akta] INT PRIMARY KEY, 
     [Tanggal] DATE NOT NULL,
-    [Id_tempat] INT NOT NULL, -- need update later
+    [Id_tempat] INT NOT NULL, 
     [Id_orang] VARCHAR(22) NOT NULL,
 
     -- fk
@@ -255,7 +247,7 @@ CREATE TABLE [ASSET] (
 
 CREATE TABLE [PAJAK] (
     [Id_npwp_tahun] VARCHAR(22) PRIMARY KEY,
-    [Jumlah_pajak_total] INT, -- migth need name change
+    [Jumlah_pajak_total] INT, 
     [Tahun] INT,
     [Status] VARCHAR(5),
 
