@@ -114,10 +114,12 @@ CREATE TABLE [ORANG] (
     [Golongan_darah] VARCHAR(3),
     [Status_menikah] VARCHAR(7) NOT NULL,
 
+
     -- fk
     [Id_pekerjaan] INT,
     [Id_KK] VARCHAR(20),
     [Id_kota] INT,
+    [Id_ibu] VARCHAR(22),
 
     -- fk
     CONSTRAINT [FK_orang_pekerjaan]
@@ -125,7 +127,9 @@ CREATE TABLE [ORANG] (
     CONSTRAINT [FK_orang_keluarga]
         FOREIGN KEY ([Id_KK]) REFERENCES [KELUARGA] ([Id_KK]) ON DELETE CASCADE,
     CONSTRAINT [FK_orang_kota]
-        FOREIGN KEY ([Id_kota]) REFERENCES [KOTA] ([Id_kota]) ON DELETE CASCADE
+        FOREIGN KEY ([Id_kota]) REFERENCES [KOTA] ([Id_kota]),
+    CONSTRAINT [FK_orang_ibu] 
+        FOREIGN KEY ([Id_ibu]) REFERENCES [ORANG] ([Id_orang])
 );
 
 -- M:n orang-alamat
