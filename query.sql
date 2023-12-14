@@ -16,6 +16,54 @@ JOIN "ALAMAT" ON "KELAHIRAN"."Id_tempat" = "ALAMAT"."Id_alamat"
 JOIN "KELUARGA" ON "KELUARGA"."Id_KK" = "ORANG"."Id_KK" 
     AND "KELUARGA"."Id_kepala_keluarga" = "ORANG"."Id_orang";
 
+SELECT 
+    "ORANG"."Id_orang",
+    "Id_akta",
+    "ORANG"."Nama_depan",
+    "ORANG"."Nama_tengah",
+    "ORANG"."Nama_belakang",
+    "KELAHIRAN"."Tanggal",
+	"ALAMAT"."Id_kota",
+    "ORANG"."Id_KK",
+	CASE WHEN "AYAH"."Nama_depan" = "ORANG"."Nama_depan" THEN NULL ELSE "AYAH"."Nama_depan" END AS "Nama_depan_ayah",
+    "IBU"."Nama_depan" AS "Nama_depan_ibu"
+FROM "ORANG"
+JOIN "KELAHIRAN" ON "ORANG"."Id_orang" = "KELAHIRAN"."Id_orang"
+JOIN "ALAMAT" ON "KELAHIRAN"."Id_tempat" = "ALAMAT"."Id_alamat"
+JOIN "KELUARGA" ON "KELUARGA"."Id_KK" = "ORANG"."Id_KK" 
+LEFT JOIN "ORANG" AS "AYAH" ON "KELUARGA"."Id_kepala_keluarga" = "AYAH"."Id_orang"
+LEFT JOIN "PERNIKAHAN" ON "PERNIKAHAN"."Id_pria" = "AYAH"."Id_orang"
+LEFT JOIN "ORANG" AS "IBU" ON "IBU"."Id_orang" = "PERNIKAHAN"."id_wanita"
+WHERE 
+    ("AYAH"."Id_orang" != "ORANG"."Id_orang" OR "IBU"."Id_orang" != "ORANG"."Id_orang")
+    OR ("AYAH"."Id_orang" IS NULL OR "IBU"."Id_orang" IS NULL)
+ORDER BY "KELAHIRAN"."Id_akta" ASC
+
+
+SELECT 
+    "ORANG"."Id_orang",
+    "Id_akta",
+    "ORANG"."Nama_depan",
+    "ORANG"."Nama_tengah",
+    "ORANG"."Nama_belakang",
+    "KELAHIRAN"."Tanggal",
+	"TEMPATL"."Nama_kota",
+    "ORANG"."Id_KK",
+	CASE WHEN "AYAH"."Nama_depan" = "ORANG"."Nama_depan" THEN NULL ELSE "AYAH"."Nama_depan" END AS "Nama_depan_ayah",
+    "IBU"."Nama_depan" AS "Nama_depan_ibu"
+FROM "ORANG"
+JOIN "KELAHIRAN" ON "ORANG"."Id_orang" = "KELAHIRAN"."Id_orang"
+JOIN "ALAMAT" ON "KELAHIRAN"."Id_tempat" = "ALAMAT"."Id_alamat"
+JOIN "KOTA" AS "TEMPATL" ON "TEMPATL"."Id_kota" = "ALAMAT"."Id_kota"
+JOIN "KELUARGA" ON "KELUARGA"."Id_KK" = "ORANG"."Id_KK" 
+LEFT JOIN "ORANG" AS "AYAH" ON "KELUARGA"."Id_kepala_keluarga" = "AYAH"."Id_orang"
+LEFT JOIN "PERNIKAHAN" ON "PERNIKAHAN"."Id_pria" = "AYAH"."Id_orang"
+LEFT JOIN "ORANG" AS "IBU" ON "IBU"."Id_orang" = "PERNIKAHAN"."id_wanita"
+WHERE 
+    ("AYAH"."Id_orang" != "ORANG"."Id_orang" OR "IBU"."Id_orang" != "ORANG"."Id_orang")
+    OR ("AYAH"."Id_orang" IS NULL OR "IBU"."Id_orang" IS NULL)
+ORDER BY "KELAHIRAN"."Id_akta" ASC
+
 
 -- migrasi antar daerah
 
