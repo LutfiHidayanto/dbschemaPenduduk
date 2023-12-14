@@ -6,6 +6,15 @@ JOIN "KOTA" ON "ORANG"."Id_kota_domisili" = "KOTA"."Id_kota"
 JOIN "berkewarganegaraan" ON "IMIGRAN"."Id_orang" = "berkewarganegaraan"."Id_orang"
 JOIN "NEGARA" ON "NEGARA"."Id_negara" = "berkewarganegaraan"."Id_negara"
 
+
+-- imigran ssms
+select *, "PEKERJAAN"."Nama_pekerjaan", "KOTA"."Nama_kota" from "ORANG"
+JOIN "IMIGRAN" ON "ORANG"."Id_orang" = "IMIGRAN"."Id_orang"
+JOIN "PEKERJAAN" ON "ORANG"."Id_pekerjaan" = "PEKERJAAN"."Id_pekerjaan"
+JOIN "KOTA" ON "ORANG"."Id_kota" = "KOTA"."Id_kota"
+JOIN "berkewarganegaraan" ON "IMIGRAN"."Id_orang" = "berkewarganegaraan"."Id_orang"
+JOIN "NEGARA" ON "NEGARA"."Id_negara" = "berkewarganegaraan"."Id_negara"
+
 -- kelahiran
 
 SELECT 
@@ -92,6 +101,18 @@ JOIN "ORANG" ON "melakukan_migrasi"."id_orang" = "ORANG"."Id_orang"
 JOIN "KOTA" AS "Kota_tujuan" ON "IMIGRASI"."Id_kota" = "Kota_tujuan"."Id_kota" 
 JOIN "NEGARA" ON "IMIGRASI"."Id_negara" = "NEGARA"."Id_negara"
 
+-- imigrasi sql
+SELECT
+	"MIGRASI"."Id_migrasi", "Nama_depan", "Nama_tengah", "Nama_belakang",
+	"MIGRASI"."Status", "MIGRASI"."Tanggal", "IMIGRASI"."Alasan_imigrasi", 
+	"NEGARA"."Nama_negara", "Kota_tujuan"."Nama_kota"
+FROM "MIGRASI"
+JOIN "IMIGRASI" ON "MIGRASI"."Id_migrasi" = "IMIGRASI"."Id_migrasi"
+JOIN "melakukan_migrasi" ON "MIGRASI"."Id_migrasi" = "melakukan_migrasi"."Id_migrasi"
+JOIN "ORANG" ON "melakukan_migrasi"."id_orang" = "ORANG"."Id_orang"
+JOIN "KOTA" AS "Kota_tujuan" ON "IMIGRASI"."Id_kota" = "Kota_tujuan"."Id_kota" 
+JOIN "NEGARA" ON "IMIGRASI"."Id_negara" = "NEGARA"."Id_negara"
+
 -- pajak
 
 SELECT
@@ -106,3 +127,10 @@ select *, "PEKERJAAN"."Nama_pekerjaan", "KOTA"."Nama_kota" from "ORANG"
 JOIN "PENDUDUK" ON "ORANG"."Id_orang" = "PENDUDUK"."Id_orang"
 JOIN "PEKERJAAN" ON "ORANG"."Id_pekerjaan" = "PEKERJAAN"."Id_pekerjaan"
 JOIN "KOTA" ON "ORANG"."Id_kota_domisili" = "KOTA"."Id_kota"
+
+-- penduduk sql
+
+select *, "PEKERJAAN"."Nama_pekerjaan", "KOTA"."Nama_kota" from "ORANG"
+JOIN "PENDUDUK" ON "ORANG"."Id_orang" = "PENDUDUK"."Id_orang"
+JOIN "PEKERJAAN" ON "ORANG"."Id_pekerjaan" = "PEKERJAAN"."Id_pekerjaan"
+JOIN "KOTA" ON "ORANG"."Id_kota" = "KOTA"."Id_kota"
